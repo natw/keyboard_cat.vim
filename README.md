@@ -17,7 +17,7 @@ Use
 
 Open up vim, and start the magic with this:
 
-    :PlayMeOff /path/to/some/file
+    :PlayMeOff "/path/to/some/file"
 
 Then, in insert mode, typing any letter will enter the next character of the file specified.
 So mash away to your heart's content.
