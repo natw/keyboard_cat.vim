@@ -1,5 +1,5 @@
 let g:keyboard_cat_counter = 0
-let s:letters = split('abcdefghijklmnopqrstuvwxyz;,./''', '\zs')
+let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}/''', '\zs')
 
 command! -nargs=? -complete=file PlayMeOff call PlayMeOff(<f-args>)
 
@@ -11,9 +11,10 @@ function! PlayMeOff(...)
     endif
     let s:keyboard_cat_text = s:ReadFile(l:fname)
     for l:letter in s:letters
-        let l:cmd = "inoremap <expr> <buffer> " . l:letter . " NextCharacter()"
-        execute l:cmd
+        execute "inoremap <expr> <buffer> " . l:letter . " NextCharacter()"
+        execute "inoremap <expr> <buffer> " . toupper(l:letter) . " NextCharacter()"
     endfor
+    inoremap <expr> <buffer> <space> NextCharacter()
     inoremap <buffer> <silent> <c-k> DisableKeyboardCat()<cr>
 endfunction
 
