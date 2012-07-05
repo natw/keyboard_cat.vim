@@ -1,7 +1,7 @@
 let g:keyboard_cat_counter = 0
 let s:letters = split('abcdefghijklmnopqrstuvwxyz;,./''', '\zs')
 
-command! -nargs=? PlayMeOff call PlayMeOff(<args>)
+command! -nargs=? -complete=file PlayMeOff call PlayMeOff(<f-args>)
 
 function! PlayMeOff(...)
     if a:0 > 0
@@ -28,7 +28,6 @@ function! DisableKeyboardCat()
 endfunction
 
 function! s:ReadFile(fname)
-    " TODO: expand fname (allow ~)
     let l:lines = readfile(a:fname)
     let l:text = join(l:lines, "") " literal ^M
     return l:text
