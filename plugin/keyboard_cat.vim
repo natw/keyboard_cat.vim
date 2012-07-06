@@ -1,15 +1,15 @@
-let g:keyboard_cat_counter = 0
-let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}/''', '\zs')
-
 command! -nargs=? -complete=file PlayMeOff call PlayMeOff(<f-args>)
 
 function! PlayMeOff(...)
+    setlocal noautoindent
+    let b:keyboard_cat_counter = 0
+    let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}/''', '\zs')
     if a:0 > 0
         let l:fname = a:1
     else
         let l:fname = "/tmp/keyboard_cat.txt"
     endif
-    let s:keyboard_cat_text = s:ReadFile(l:fname)
+    let b:keyboard_cat_text = s:ReadFile(l:fname)
     for l:letter in s:letters
         execute "inoremap <expr> <buffer> " . l:letter . " NextCharacter()"
         execute "inoremap <expr> <buffer> " . toupper(l:letter) . " NextCharacter()"
@@ -19,8 +19,8 @@ function! PlayMeOff(...)
 endfunction
 
 function! NextCharacter()
-    let l:char = strpart(s:keyboard_cat_text, g:keyboard_cat_counter, 1)
-    let g:keyboard_cat_counter += 1
+    let l:char = strpart(b:keyboard_cat_text, b:keyboard_cat_counter, 1)
+    let b:keyboard_cat_counter += 1
     return l:char
 endfunction
 
@@ -33,3 +33,4 @@ function! s:ReadFile(fname)
     let l:text = join(l:lines, "") " literal ^M
     return l:text
 endfunction
+
