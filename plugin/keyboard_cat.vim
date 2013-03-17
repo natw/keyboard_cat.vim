@@ -8,7 +8,7 @@ function! PlayMeOff(...)
     setlocal indentkeys=
     filetype indent off
     let b:keyboard_cat_counter = 0
-    let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}/''', '\zs')
+    let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}[]/''', '\zs')
     if a:0 > 0
         let l:fname = a:1
     else
