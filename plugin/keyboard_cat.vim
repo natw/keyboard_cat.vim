@@ -2,6 +2,11 @@ command! -nargs=? -complete=file PlayMeOff call PlayMeOff(<f-args>)
 
 function! PlayMeOff(...)
     setlocal noautoindent
+    setlocal nosmartindent
+    setlocal nosmarttab
+    setlocal indentexpr=
+    setlocal indentkeys=
+    filetype indent off
     let b:keyboard_cat_counter = 0
     let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}/''', '\zs')
     if a:0 > 0
