@@ -1,6 +1,7 @@
-command! -nargs=? -complete=file PlayMeOff call PlayMeOff(<f-args>)
+command! -nargs=? -complete=file PlayMeOff call s:PlayMeOff(<f-args>)
 
-function! PlayMeOff(...)
+
+function! s:PlayMeOff(...)
     setlocal noautoindent
     setlocal nosmartindent
     setlocal nosmarttab
@@ -16,26 +17,28 @@ function! PlayMeOff(...)
     endif
     let b:keyboard_cat_text = s:ReadFile(l:fname)
     for l:letter in s:letters
-        execute "inoremap <expr> <buffer> " . l:letter . " NextCharacter()"
-        execute "inoremap <expr> <buffer> " . toupper(l:letter) . " NextCharacter()"
+        execute "inoremap <expr> <buffer> " .  l:letter . " <SID>NextCharacter()"
+        execute "inoremap <expr> <buffer> " .  toupper(l:letter) . " <SID>NextCharacter()"
     endfor
-    inoremap <expr> <buffer> <space> NextCharacter()
-    inoremap <buffer> <silent> <c-k> DisableKeyboardCat()<cr>
+    inoremap <expr> <buffer> <space> <SID>NextCharacter()
+    inoremap <buffer> <silent> <c-k> s:DisableKeyboardCat()<cr>
 endfunction
 
-function! NextCharacter()
+
+function! s:NextCharacter()
     let l:char = strpart(b:keyboard_cat_text, b:keyboard_cat_counter, 1)
     let b:keyboard_cat_counter += 1
     return l:char
 endfunction
 
-function! DisableKeyboardCat()
+
+function! s:DisableKeyboardCat()
     " TODO: turn off
 endfunction
+
 
 function! s:ReadFile(fname)
     let l:lines = readfile(a:fname)
     let l:text = join(l:lines, "") " literal ^M
     return l:text
 endfunction
-
