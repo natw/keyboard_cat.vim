@@ -3,6 +3,9 @@ keyboard\_cat.vim
 
 A vim plugin for pretending like you can type really fast.
 
+**Note**: Actually viewing keyboard_cat.vim triggers some kind of github bug at the moment. The raw view works fine, though.
+
+
 Why?
 ----
 
