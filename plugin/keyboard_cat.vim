@@ -7,6 +7,7 @@ function! s:PlayMeOff(...)
     setlocal nosmarttab
     setlocal indentexpr=
     setlocal indentkeys=
+    setlocal comments=
     filetype indent off
     let b:keyboard_cat_counter = 0
     let s:letters = split('abcdefghijklmnopqrstuvwxyz1234567890-=;,.:<>?"{}[]/''', '\zs')
