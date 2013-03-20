@@ -40,6 +40,6 @@ endfunction
 
 function! s:ReadFile(fname)
     let l:lines = readfile(a:fname)
-    let l:text = join(l:lines, "") " literal ^M
+    let l:text = join(l:lines, "\n")
     return l:text
 endfunction
