@@ -3,8 +3,6 @@ keyboard\_cat.vim
 
 A vim plugin for pretending like you can type really fast.
 
-**Note**: Actually viewing keyboard_cat.vim triggers some kind of github bug at the moment. The raw view works fine, though.
-
 
 Why?
 ----
@@ -14,6 +12,12 @@ But typing and talking is hard, so with this you can just mash on the keyboard a
 
 This might only really be useful for less serious presentations, like TiP BoF talks.
 
+Install
+-------
+
+Either put plugin/keyboard_cat.vim in  ~/.vim/plugin/ or just source it (for one-time use):
+
+    :source plugin/keyboard_cat.vim
 
 Use
 ---
