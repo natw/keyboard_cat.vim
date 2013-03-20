@@ -7,7 +7,7 @@ A vim plugin for pretending like you can type really fast.
 Why?
 ----
 
-Conceivaby, when giving some kind of presentation, you might want to pretend like you are typing something out.
+Conceivably, when giving some kind of presentation, you might want to pretend like you are typing something out.
 But typing and talking is hard, so with this you can just mash on the keyboard and let the letters magically appear.
 
 This might only really be useful for less serious presentations, like TiP BoF talks.
@@ -15,7 +15,7 @@ This might only really be useful for less serious presentations, like TiP BoF ta
 Install
 -------
 
-Either put plugin/keyboard_cat.vim in  ~/.vim/plugin/ or just source it (for one-time use):
+Do the usual [pathogen](https://github.com/tpope/vim-pathogen)/[vundle](https://github.com/gmarik/vundle) thing, put plugin/keyboard_cat.vim in  ~/.vim/plugin/ or just source it (for one-time use):
 
     :source plugin/keyboard_cat.vim
 
