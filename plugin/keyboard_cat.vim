@@ -21,6 +21,7 @@ function! s:PlayMeOff(...)
         execute "inoremap <expr> <buffer> " .  l:letter . " <SID>NextCharacter()"
         execute "inoremap <expr> <buffer> " .  toupper(l:letter) . " <SID>NextCharacter()"
     endfor
+    inoremap <expr> <buffer> <BS> s:GoBackKittyCat()
     inoremap <expr> <buffer> <space> <SID>NextCharacter()
     inoremap <buffer> <silent> <c-k> s:DisableKeyboardCat()<cr>
 endfunction
@@ -32,6 +33,10 @@ function! s:NextCharacter()
     return l:char
 endfunction
 
+function! s:GoBackKittyCat()
+    let b:keyboard_cat_counter -= 1
+    return "\b"
+endfunction
 
 function! s:DisableKeyboardCat()
     " TODO: turn off
