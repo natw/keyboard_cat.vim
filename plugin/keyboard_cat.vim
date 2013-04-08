@@ -1,7 +1,7 @@
 command! -nargs=? -complete=file PlayMeOff call s:PlayMeOff(<f-args>)
-command! -nargs=? -complete=file UnMapCat call s:UnMapCat()
+command! -nargs=? -complete=file DisableKeyboardCat call s:DisableKeyboardCat()
 
-let s:letters = split('abcdefghijklmnopqrstuvwxyz;,.:<>?"{}[]/''', '\zs')
+let s:letters = split('abcdefghijklmnopqrstuvwxyz1234567890-=;,.:<>?"{}[]/''', '\zs')
 
 function! s:PlayMeOff(...)
     setlocal noautoindent
@@ -19,9 +19,6 @@ function! s:PlayMeOff(...)
     endif
     let b:keyboard_cat_text = s:ReadFile(l:fname)
     call <SID>MapCat()
-    inoremap <expr> <buffer> <BS> <SID>GoBackKittyCat()
-    inoremap <expr> <buffer> <space> <SID>NextCharacter()
-    map <leader>ew :call <SID>DisableKeyboardCat()<cr>
 endfunction
 
 function! s:MapCat()
@@ -29,6 +26,8 @@ function! s:MapCat()
         execute "inoremap <expr> <buffer> " .  l:letter . " <SID>NextCharacter()"
         execute "inoremap <expr> <buffer> " .  toupper(l:letter) . " <SID>NextCharacter()"
     endfor
+    inoremap <expr> <buffer> <space> <SID>NextCharacter()
+    inoremap <expr> <buffer> <BS> <SID>GoBackKittyCat()
 endfunction
 
 function! s:NextCharacter()
@@ -44,13 +43,11 @@ endfunction
 
 function! s:DisableKeyboardCat()
     for l:letter in s:letters
-        execute "inoremap <expr> <buffer> " . l:letter . " <SID>Meow('" . l:letter ."')"
-        execute "inoremap <expr> <buffer> " . toupper(l:letter) . " <SID>Meow('" . toupper(l:letter) ."')"
+        execute "inoremap <buffer>" l:letter l:letter
+        execute "inoremap <buffer>" toupper(l:letter) toupper(l:letter)
     endfor
-endfunction
-
-function! s:Meow(letter)
-    return a:letter
+    inoremap <buffer> <space> <space>
+    inoremap <buffer> <bs> <bs>
 endfunction
 
 function! s:ReadFile(fname)
